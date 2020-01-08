@@ -279,7 +279,7 @@ class ImageValue(Value):
         class widget(forms.FileInput):
             "Widget with preview"
 
-            def render(self, name, value, attrs=None):
+            def render(self, name, value, attrs=None, renderer=None):
                 output = []
 
                 try:
@@ -294,7 +294,7 @@ class ImageValue(Value):
                 except IOError:
                     pass
 
-                output.append(forms.FileInput.render(self, name, value, attrs))
+                output.append(forms.FileInput.render(self, name, value, attrs, renderer))
                 return mark_safe(''.join(output))
 
     def to_python(self, value):
